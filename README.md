@@ -1,6 +1,9 @@
 # Digital Signal Processing
 
-Laboratories Schedule
+![Spectrogram](img1.jpg)
+
+
+**Laboratories Schedule**
 * Sampling and Aliasing
 * Digital Fourier Transform
 * Filtering
