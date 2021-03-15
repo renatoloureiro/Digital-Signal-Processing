@@ -7,7 +7,6 @@ Laboratories Schedule
 * Energy
 * Maximum Likelihood Estimations
 
-"""
-Aditional information:
 
-"""
+**Aditional information:**
+The first assignment the deadline is one week after the lab, as for the others the deadline is the same day as the lab session.
