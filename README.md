@@ -6,3 +6,8 @@ Laboratories Schedule
 * Filtering
 * Energy
 * Maximum Likelihood Estimations
+
+"""
+Aditional information:
+
+"""
