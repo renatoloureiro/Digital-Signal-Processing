@@ -24,7 +24,7 @@ x=cos(2.*pi.*((1./3).*k2.*t.^3 + 0.5.*k1.*t.^2 + F0.*t + phi0));
 
 %soundsc(x,fs);
 
-N=32*8; %maybe 8 is good
+N=32*2; %maybe 8 is good
 spectrogram(x,hann(N),3*N/4,4*N,8000,'yaxis');
 
 
