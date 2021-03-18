@@ -32,16 +32,18 @@ spectrogram(x,hann(N),3*N/4,4*N,8000,'yaxis');
 for i=1:length(x)/2
    y(i)=x(2*i); 
 end
-soundsc(y,fs/2);
+%soundsc(y,fs/2);
 spectrogram(y,hann(N),3*N/4,4*N,8000/2,'yaxis');
 
 % analyse the mp3 file
 
 [z,Fs]=audioread('romanza_pe.wav');
-soundsc(z,Fs);
-pause(5);
+%soundsc(z,Fs);
+%pause(5);
 clear sound
-%spectrogram(z,hann(N),3*N/4,4*N,Fs,'yaxis');
+z1=z(1:Fs*15);
+N=32*64*2;
+spectrogram(z1,hann(N),3*N/4,4*N,Fs,'yaxis');
 
 
 
