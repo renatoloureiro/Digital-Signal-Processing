@@ -7,6 +7,7 @@
 % Global par
     listen=1;
     spect=0;
+    plot_3c=0;
 
 % Sampling definition
     fs=8000; % sampling frequency
@@ -50,6 +51,19 @@
         spectrogram(y,hann(N),3*N/4,4*N,fs/2,'yaxis');
     end
 
+    fs_j=[20;8;4]*10^3; %sampling frequencies given
+    f_i=[10;20;30;40]; %4 frequencies choosen by us ESCOLHER AS FREQUENCIAS
+    
+    if plot_3c==1
+        for i=1:4 %for each choosen frequency
+            for j=1:3 %for each sampling frequency
+                tz=0:1/fs_j(j):2; %TALVEZ PROLONGAR ESTE TEMPO?
+                z_signal=cos(2.*pi.*f_i(i).*tz); 
+                figure
+                plot(tz, z_signal); %plots for each choosen frequency at every sampling frequency
+            end
+        end 
+    end
 %% analyse the mp3 file
 
     [z,Fs]=audioread('romanza_pe.wav');
