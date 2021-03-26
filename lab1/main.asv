@@ -126,7 +126,7 @@
             pos = get(h,'Position');
             set(h,'PaperPositionMode','Auto','PaperUnits','Inches',...
                     'PaperSize',[pos(3), pos(4)]);
-            print(h,[pwd join(['/Img/',name])],'-dpdf','-r0');
+            print(h,[pwd join('/Img/',name],'-dpdf','-r0');
         end
         if flag1==0
             close(h)
