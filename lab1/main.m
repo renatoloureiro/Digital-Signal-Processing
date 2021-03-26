@@ -105,7 +105,7 @@
     
     N=32*32; % specify the width of the spectogram
     spect_creation(flag.spect,flag.print ,N,Fs/5,...
-                    zf2(1:(Fs/5)*15),'spect_romanza_filtered')
+                    zf2(1:(Fs/5)*15),'spect_romanza_filtered&sampled')
                 
                 
 
