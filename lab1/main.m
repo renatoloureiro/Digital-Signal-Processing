@@ -23,8 +23,8 @@
     time_sound=5;
     hear_sound(flag.listen, fs, x, time_sound)
     
-    N=32*8; %maybe 8 is good, specify the width of the spectogram
-    spect_creation(flag.spect,flag.print, N, fs, x, 'spect_original_8000')
+    N=32*2; %maybe 8 is good, specify the width of the spectogram
+    spect_creation(flag.spect,flag.print, N, fs, x, 'spect_original_N32_2')
     
     
 % generate signal y with a frequency of half 
@@ -37,7 +37,7 @@
     hear_sound(flag.listen, fs/2, y, time_sound)
     
     N=32*4; % specify the width of the spectogram
-    spect_creation(flag.spect,flag.print ,N,fs/2,y,'spect_nyquist_failed')
+    %spect_creation(flag.spect,flag.print ,N,fs/2,y,'spect_nyquist_failed')
     
 
     fs_j=[20]*10^3; %sampling frequencies given
