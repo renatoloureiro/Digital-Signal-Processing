@@ -5,8 +5,8 @@
 % ************************************************************************
 
 % Global par
-    listen=1;
-    spect=0;
+    listen=0;
+    spect=1;
     plot_3c=0;
 
 % Sampling definition
@@ -32,7 +32,7 @@
     
     if spect==1
         figure(1) 
-        N=32*2; %maybe 8 is good
+        N=32*8; %maybe 8 is good
         spectrogram(x,hann(N),3*N/4,4*N,fs,'yaxis');
     end
     
@@ -47,20 +47,26 @@
     end
     if spect==1
         figure(2)
-        N=32*2; %maybe 8 is good
+        N=4*32; %maybe 8 is good
         spectrogram(y,hann(N),3*N/4,4*N,fs/2,'yaxis');
     end
 
-    fs_j=[20;8;4]*10^3; %sampling frequencies given
-    f_i=[10;20;30;40]; %4 frequencies choosen by us ESCOLHER AS FREQUENCIAS
+    fs_j=[20]*10^3; %sampling frequencies given
+    f_i=[5]*10^3; %4 frequencies choosen by us ESCOLHER AS FREQUENCIAS
     
     if plot_3c==1
-        for i=1:4 %for each choosen frequency
-            for j=1:3 %for each sampling frequency
-                tz=0:1/fs_j(j):2; %TALVEZ PROLONGAR ESTE TEMPO?
+        for i=1:length(f_i) %for each choosen frequency
+            for j=1:length(fs_j) %for each sampling frequency
+                tz=0:1/fs_j(j):1.5*10^-3; %TALVEZ PROLONGAR ESTE TEMPO?
+                k=1:length(tz);
                 z_signal=cos(2.*pi.*f_i(i).*tz); 
+                tt=0:1/(10*fs_j):1.5*10^-3;
+                for q=1:length(tt)
+                    h=sinc((tt(q) - k./fs_j).*fs_j); % recontruct the continous signal
+                    xr(q)=z_signal*h';
+                end
                 figure
-                plot(tz, z_signal); %plots for each choosen frequency at every sampling frequency
+                plot(tt, xr); %plots for each choosen frequency at every sampling frequency
             end
         end 
     end
@@ -74,7 +80,7 @@
     end
     z1=z(1:Fs*15);
     if spect==1
-        N=32*64*2;
+        N=32*64;
         figure(3)
         spectrogram(z1,hann(N),3*N/4,4*N,Fs,'yaxis');
     end
@@ -84,7 +90,7 @@
     for i=1:length(z)/5
         z2(i)=z(5*i);
     end
-    z2=z2(1:(Fs/5)*10); % the signal only has information regarding ...
+    z2=z2(1:(Fs/5)*15); % the signal only has information regarding ...
                         % the first 10 seconds
     if listen==1                    
         soundsc(z2,Fs/5);
@@ -108,7 +114,7 @@
     end
     
     if spect==1
-        N=32*16;
+        N=32*32;
         figure(5)
         spectrogram(zf(1:Fs*15),hann(N),3*N/4,4*N,Fs,'yaxis');
     end
@@ -124,7 +130,7 @@
     end
 
     if spect==1
-        N=32*16;
+        N=32*32;
         figure(6)
         spectrogram(zf2(1:(Fs/5)*15),hann(N),3*N/4,4*N,Fs/5,'yaxis');
     end
