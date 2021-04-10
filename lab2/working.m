@@ -1,4 +1,4 @@
-clc;clear all;close all;
+%clc;clear all;close all;
 % load sunspot.dat
 %  year=sunspot(:,1);
 % relNums=sunspot(:,2);
@@ -6,14 +6,21 @@ clc;clear all;close all;
 % title('Sunspot Data')
 %  plot(year(1:50),relNums(1:50),'b.-');
 
-M=512;
-w0=5.2*2*pi/M;
-samples=0:M-1;
-for n=1:length(samples)
-   relNums(n)=5*cos(w0*samples(n) +1)+ 2*cos(2*w0*samples(n) +2) +...
-       3*cos(5*w0*samples(n) + 3); 
-end
+% M=2*512;
+% w0=5.2*2*pi/M;
+% samples=0:M-1;
+% for n=1:length(samples)
+%     if n<M/2
+%     relNums(n)=5*cos(w0*samples(n) +1)+ 2*cos(2*w0*samples(n) +2) +...
+%        3*cos(5*w0*samples(n) + 3);
+%     else
+%        relNums(n)=0; 
+%     end
+% end
+ [p,Fs]=audioread('How_many_roads.wav');
+ relNums=p;
  
+
  yfft = fft(relNums);%figure;plot(ifft(yfft)-data1d,'r')
  %yfft = fft(data1d);   iyfft=ifft(yfft);
  [sum(relNums)  yfft(1)]
@@ -22,8 +29,8 @@ end
  yfft=yfft.*2./N;
  %%
  power_fft = abs(yfft);power1_fft = sqrt(yfft.*conj(yfft));
- figure;plot(power_fft,'-b');hold on;plot(power_fft,'rO')
-
+ figure(1);plot(power_fft,'-b');%hold on;plot(power_fft,'rO')
+ %%
  ang_fft = angle(yfft);real_fft= real(yfft);imag_fft= imag(yfft);
  figure;plot(real_fft);hold on;plot(imag_fft,'-r')
  figure;plot(angle(yfft))
