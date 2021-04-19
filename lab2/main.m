@@ -46,7 +46,7 @@ figure()
 
 %% R1.f)
 N=2*512;
-w0=5.2*2*pi/N;
+w0=5.2*2*pi/512;
 samples=0:N-1;
 for n=1:length(samples)
     if n<N/2
@@ -56,37 +56,23 @@ for n=1:length(samples)
     x(n)=0;    
     end
 end
+
+
 yfft=fft(x);
 abs_yfft=abs(yfft);     angle_yfft=angle(yfft);
 f=(0:N/2-1)./N;
 z=zeros(1,N);
 n=1:N;
-peaks=[ 5,  1192.15,    1.33341;
-        11, 368.903,    1.03408;
-        26, 740.565,    3.02683];
+peaks=[ 10,  1192.15,    1.33341;
+        21, 368.903,    1.03408;
+        52, 740.565,    3.02683];
 for i=1:length(peaks)
     z=z+(2/N)*(peaks(i,2)*cos(2*pi*n*peaks(i,1)/N + peaks(i,3)));
 end
-plot(samples,z)
+plot(samples/2,z)
 xlabel("amostras")
     
-%% R2.a)
-[p,Fs]=audioread('How_many_roads.wav');
-% soundsc(p,Fs);
 
-% R2.b) % get segment from sample 48500
-M=2048;
-seg=p(48500:48500+M-1);
-plot(0:M-1, seg);
-xlabel("amostras");
-%spectrogram(seg,hann(N),3*N/4,4*N,Fs,'yaxis');
-soundsc(seg,Fs)
-aux=fft(seg);
-figure()
-f=(0:length(aux)/2)/length(aux);
-plot(f,abs(aux(1:length(aux)/2 +1)/length(aux)));
-
-% R2.c)
 
 
 
