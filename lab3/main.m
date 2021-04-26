@@ -6,6 +6,7 @@ plotting = 0;
 listening = 1;
 
 %% Ler o sinal audio
+%R1a)
 [x,Fs]=audioread('fugee.wav');
 if listening == 1
     soundsc(x,Fs);
@@ -13,6 +14,7 @@ if listening == 1
     clear sound;
 end
 
+%R1b)
 t = 0:1/Fs:length(x)/Fs; %Tempo "amostrado" de 1/Fs em 1/Fs segundos
 t(1) = []; %Vectores x e t ficarem do mesmo tamanho
 
@@ -27,13 +29,17 @@ if plotting == 1
     %%plot(t(110*Fs:111*Fs),x(110*Fs:111*Fs));%Plot de segmento do sinal
 end
 
+%R1c)
+
 %FFT
 yfft = fft(x);
 abs_yfft=abs(yfft);
 
 %Plot magnitude fft escala logaritmica
+norm_f = 0:2*pi/length(yfft):2*pi;
+norm_f(1)=[];
 figure();
-semilogy(abs_yfft);
+semilogy(norm_f,abs_yfft);
 
 %% Filtrar com LTI
 
@@ -119,4 +125,4 @@ if listening == 1
     clear sound;
 end
 
-
+%R3e) tentar com outras ordens
