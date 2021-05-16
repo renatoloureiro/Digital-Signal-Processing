@@ -72,12 +72,12 @@ semilogy(norm_f,abs_yfft);
 
 %R2a)
 n_bw = 10;
-Wn = 0.25; %Check this
+Wn = 0.5; %Check this
 [b,a] = butter(n_bw,Wn); %Obter os coefecientes do filtro de Butterworth
 [h,w]=freqz(b,a); %Resposta filtro
 
 figure(); %Check this
-plot(w,h); %Plotar linearmente h
+plot(w,abs(h)); %Plotar linearmente h
 
 %R2b)
 
@@ -97,14 +97,14 @@ plot(t(10*Fs:11*Fs),xf_bw(10*Fs:11*Fs));
 %R2d)
 
 %FFT filtrado
-yfft_bw = fft(x);
+yfft_bw = fft(xf_bw);
 abs_yfft_bw=abs(yfft_bw);
 
 %Plot magnitude fft escala logaritmica
 figure();
-semilogy(abs_yfft);
+semilogy((0:length(abs_yfft)-1)*2*pi/(length(abs_yfft)-1),abs_yfft);
 hold();
-semilogy(abs_yfft_bw);
+semilogy((0:length(abs_yfft_bw)-1)*2*pi/(length(abs_yfft_bw)-1),abs_yfft_bw);
 
 %R2e)
 
@@ -119,7 +119,7 @@ end
 %% Filtrar com Median
 
 %R3b)
-n_m=3;
+n_m=4;
 xf_m = medfilt1(x,n_m);
 
 figure();
@@ -135,14 +135,14 @@ plot(t(10*Fs:11*Fs),xf_m(10*Fs:11*Fs));
 %R3c)
 
 %FFT filtrado
-yfft_m = fft(x);
+yfft_m = fft(xf_m);
 abs_yfft_m=abs(yfft_m);
 
 %Plot magnitude fft escala logaritmica
 figure();
-semilogy(abs_yfft);
+semilogy((0:length(abs_yfft)-1)*2*pi/(length(abs_yfft)-1),abs_yfft);
 hold();
-semilogy(abs_yfft_m);
+semilogy((0:length(abs_yfft_bw)-1)*2*pi/(length(abs_yfft_bw)-1),abs_yfft_m);
 
 %R3d)
 
