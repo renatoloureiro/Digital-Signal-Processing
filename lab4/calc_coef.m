@@ -6,5 +6,5 @@ function a_r = calc_coef(r,P)
         H(k,i)=r(k-i);
         end
     end
-    a_r = inv(H'*H)*H'*r;
+    a_r = inv(H'*H)*H'*r';
 end
