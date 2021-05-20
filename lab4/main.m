@@ -37,30 +37,18 @@ P = 6;
 
 %Calculo coeficientes
 
-a_r = calc_coef(r,P);
+[a_r,H] = calc_coef(r,P);
 
 %% R1e)
-r_predicted = r(1:P);
-r_predicted(P:length(r)) = 0; %Not sure
 
-for n=1+P:length(r)
-    for k=1:P
-        r_predicted(n) = r_predicted(n) + a_r(k)*r_predicted(n-k);
-    end
-end
+% Previsão de r
+
+r_predicted = H*a_r;
 
 %Calculo do residuo
-for i=1+P:length(r_predicted)
-    for k=1:P
-        e(i)=r_predicted(i)-a_r(k)*r_predicted(i-k);
-    end
-end
+e = r' - r_predicted;
 
 %% R1f)
-
-%Calculo coeficientes
-
-
 
 % Energia do residuo
 energy_e = energy(e);
