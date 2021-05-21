@@ -9,11 +9,10 @@ a = r1a(x_train,N);
 
 %Prediction
 
-i=N+1;
-aux=x_train(1:N);
-while(i<=length(x_train))
-   aux(i)=a*x_train(i-N);
-   i=i+1;
+%i=N+1;
+%aux=x_train(1:N);
+for i=1:length(x_train)-N
+   aux(i)=a*x_train(i); 
 end
 
 %Plot da training data, da prediction e do residuo correspondente
@@ -21,7 +20,7 @@ end
 %% R1c)
 %Calculo do residuo
 i=1;
-while(i<length(x_train)-N)
+while(i<=length(x_train)-N)
    r(i)=x_train(i+N)-a*x_train(i);
    i=i+1; 
 end
@@ -40,21 +39,21 @@ P = 6;
 a_r = calc_coef(r,P);
 
 %% R1e)
-r_predicted = r(1:P);
-r_predicted(P:length(r)) = 0; %Not sure
+%r_predicted = r(1:P);
+r_predicted(1:length(r)-P) = 0; %Not sure
 
-for n=1+P:length(r)
+for n=1:length(r)-P
     for k=1:P
-        r_predicted(n) = r_predicted(n) + a_r(k)*r_predicted(n-k);
+        r_predicted(n) = r_predicted(n) + a_r(k)*r(n+P-k);
     end
 end
+
+x_new_predicted=aux(P+1:length(aux)) + r_predicted;
+
 
 %Calculo do residuo
-for i=1+P:length(r_predicted)
-    for k=1:P
-        e(i)=r_predicted(i)-a_r(k)*r_predicted(i-k);
-    end
-end
+
+e=x_train(N+P+1:length(x_train))-x_new_predicted';
 
 %% R1f)
 

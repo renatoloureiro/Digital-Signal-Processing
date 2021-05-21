@@ -40,20 +40,25 @@ P = 6;
 a_r = calc_coef(r,P);
 
 %% R1e)
-r_predicted = r(1:P);
-r_predicted(P:length(r)) = 0;
+%r_predicted = r(1:P);
+r_predicted(1:length(r)-P) = 0; %Not sure
 
-for n=1+P:length(r)
+for n=1:length(r)-P
     for k=1:P
-        r_predicted(n) = r_predicted(n) + a_r(k)*r_predicted(n-k);
+        r_predicted(n) = r_predicted(n) + a_r(k)*r(n+P-k);
     end
 end
 
-%% R1f)
 %Calculo do residuo
-for i=1:length(r_predicted)
-   e(i)=r_predicted(i+P)-a_r*r_predicted(i);
+for i=1+P:length(r_predicted)
+    e(i-P)=r(i)- r_predicted(i-P);
 end
+
+%% R1f)
+
+%Calculo coeficientes
+
+
 
 % Energia do residuo
 energy_e = energy(e);
