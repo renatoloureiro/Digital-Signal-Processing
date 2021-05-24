@@ -4,26 +4,10 @@ clear;
 load('energy_train.mat');
 N=96;
 
-%% R1a)
+%% R1a) R1b)
 
-a = r1a(x_train,N);
+[a, x_predicted, r] = r1a(x_train,N);
 
-%% R1b)
-
-%Prediction
-
-%i=N+1;
-%aux=x_train(1:N);
-for i=1:length(x_train)-N
-   x_predicted(i)=a*x_train(i); 
-end
-
-%Calculo do residuo
-i=1;
-while(i<=length(x_train)-N)
-   r(i)=x_train(i+N)-a*x_train(i);
-   i=i+1; 
-end
 
 %Plot da training data, da prediction e do residuo correspondente
 
@@ -92,7 +76,38 @@ legend("Resíduo (e(t))");
 
 %Calculo coeficientes
 
-
-
 % Energia do residuo
 energy_e = energy(e);
+
+%% 
+
+clear;
+load('energy_test.mat');
+N=96;
+
+[a, x_predicted, r] = r1a(x_test,N);
+anomaly_detection(x_test(N+1:length(x_test)), x_predicted);
+
+P = 6;
+a_r = calc_coef(r,P);
+r_predicted(1:length(r)-P) = 0; %Not sure
+
+for n=1:length(r)-P
+    for k=1:P
+        r_predicted(n) = r_predicted(n) + a_r(k)*r(n+P-k);
+    end
+end
+x_new_predicted=x_predicted(P+1:length(x_predicted)) + r_predicted;
+
+%anomaly_detection(x_test(N+1+P:length(x_test)), x_new_predicted);
+
+
+
+
+
+
+
+
+
+
+
