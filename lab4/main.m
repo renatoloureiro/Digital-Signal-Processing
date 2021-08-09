@@ -11,6 +11,7 @@ N=96;
 
 %Plot da training data, da prediction e do residuo correspondente
 
+<<<<<<< HEAD
 figure();
 plot(x_train);
 hold();
@@ -27,6 +28,36 @@ legend("Resíduo (r(t))");
 
 %% R1c)
 
+=======
+i=N+1;
+x_predicted1=x_train(1:N);
+while(i<=length(x_train))
+   x_predicted1(i)=a*x_train(i-N);
+   i=i+1;
+end
+
+%Calculo do residuo
+i=1;
+while(i<length(x_train)-N)
+   r(i)=x_train(i+N)-a*x_train(i);
+   i=i+1; 
+end
+>>>>>>> c3acaa3ecf922a74578645c2f19aa4dec871b38c
+
+%Plot da training data, da prediction e do residuo correspondente
+
+plot(x_train)
+title('Training Data')
+figure;
+plot(r)
+title('Resíduo r(n)')
+figure;
+plot(x_train)
+hold on
+plot(x_predicted1)
+legend('Training Data','Previsão')
+
+%% R1c)
 
 % Energia do residuo
 energy_r = energy(r);
@@ -39,9 +70,10 @@ P = 6;
 
 %Calculo coeficientes
 
-a_r = calc_coef(r,P);
+[a_r,H] = calc_coef(r,P);
 
 %% R1e)
+<<<<<<< HEAD
 %r_predicted = r(1:P);
 r_predicted(1:length(r)-P) = 0; %Not sure
 
@@ -50,11 +82,18 @@ for n=1:length(r)-P
         r_predicted(n) = r_predicted(n) + a_r(k)*r(n+P-k);
     end
 end
+=======
+
+% Previsão de r
+
+r_predicted = H*a_r;
+>>>>>>> c3acaa3ecf922a74578645c2f19aa4dec871b38c
 
 x_new_predicted=x_predicted(P+1:length(x_predicted)) + r_predicted;
 
 
 %Calculo do residuo
+<<<<<<< HEAD
 
 e=x_train(N+P+1:length(x_train))-x_new_predicted';
 
@@ -108,6 +147,21 @@ x_new_predicted=x_predicted(P+1:length(x_predicted)) + r_predicted;
 
 
 
+=======
+e = r' - r_predicted;
 
+% plot(e)
+% title('Resíduo e(n)')
+% figure;
 
+x_predicted2 = x_predicted1 + r_predicted;
+>>>>>>> c3acaa3ecf922a74578645c2f19aa4dec871b38c
+
+plot(x_train)
+hold on
+plot(x_predicted2)
+legend('Training Data','Prediction')
+figure;
+
+%% R1f)
 
