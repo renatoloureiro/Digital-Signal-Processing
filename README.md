@@ -1,18 +1,18 @@
 # Digital Signal Processing
 
+<img src="https://img.shields.io/badge/ubuntu-v20.04-blue"/>
+<img src="https://img.shields.io/badge/matlab-R2020a-orange"/>
+
+Repository for the course "Digital Signal Processing" at Instituto Superior Técnico (2020-2021). 
+
+- Lab 1 - Sampling and Aliasing
+- Lab 2 - Discrete Fourier Transform
+- Lab 3 - Digital Filtering
+- Lab 4 - Energy (LS)
+- Lab 5 - Maximum Likelihood
+
+ ## Reports
+
+
 ![Spectrogram](img1.jpg)
 
-
-**Laboratories Schedule**
-* Sampling and Aliasing
-* Digital Fourier Transform
-* Filtering
-* Energy
-* Maximum Likelihood Estimations
-
-
-**Aditional information:**
-The first assignment the deadline is one week after the lab, as for the others the deadline is the same day as the lab session.
-
-**Overleaf Link**
-https://www.overleaf.com/7733867135hqwvnhpfvyqh
